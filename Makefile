@@ -20,3 +20,9 @@ clean: down
 	rm -f api
 	docker system prune -f
 	docker volume prune -f
+
+github:
+	@echo "=============Committing changes to Github============="
+	git add -A
+	git commit -m "$m"
+	git push

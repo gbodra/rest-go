@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"math/big"
 	"net/http"
 	"os"
 
@@ -21,20 +20,6 @@ type Price struct {
 	ID              string `json:"id,omitempty"`
 	CustomerCluster string `json:"customercluster,omitempty"`
 	Product         string `json:"product,omitempty"`
-}
-
-// GetFibonacci returns the nth number on the fibonacci sequence
-func GetFibonacci(w http.ResponseWriter, r *http.Request) {
-	n := uint(10000)
-
-	var n2, n1 = big.NewInt(0), big.NewInt(1)
-
-	for i := uint(1); i < n; i++ {
-		n2.Add(n2, n1)
-		n1, n2 = n2, n1
-	}
-
-	json.NewEncoder(w).Encode(n2)
 }
 
 // CreateHash reads the json input and hashes it using HMAC SHA-256
@@ -65,7 +50,6 @@ func CreateHash(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	router := mux.NewRouter()
-	router.HandleFunc("/fibonacci", GetFibonacci).Methods("GET")
 	router.HandleFunc("/hash", CreateHash).Methods("POST")
 
 	log.Fatal(http.ListenAndServe(":8000", router))
