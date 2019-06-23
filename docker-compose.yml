@@ -1,0 +1,9 @@
+version: '3.6'
+
+services:
+    api:
+        image: docker-rest-go:latest
+        ports:
+            - 8000:8000
+        volumes:
+            - ./:/go/src/github.com/gbodra/rest-go

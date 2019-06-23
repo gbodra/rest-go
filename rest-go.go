@@ -1,19 +1,17 @@
 package main
 
 import (
-	// "fmt"
-	// "time"
-    "log"
-    "net/http"
-	"github.com/gorilla/mux"
+	"encoding/json"
+	"log"
 	"math/big"
+	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func GetFibonacci(w http.ResponseWriter, r *http.Request) {
-	// initTime := time.Now().Nanosecond()
+	n := uint(10000)
 
-	n:= uint(10000)
-	
 	var n2, n1 = big.NewInt(0), big.NewInt(1)
 
 	for i := uint(1); i < n; i++ {
@@ -21,8 +19,7 @@ func GetFibonacci(w http.ResponseWriter, r *http.Request) {
 		n1, n2 = n2, n1
 	}
 
-	// endTime := time.Now().Nanosecond()
-	// fmt.Println("Time (nanosec): ", (endTime - initTime))
+	json.NewEncoder(w).Encode(n2)
 }
 
 func main() {
