@@ -15,12 +15,15 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Price type holds the model for storing price values and
+// exchanging them on the API
 type Price struct {
 	ID              string `json:"id,omitempty"`
-	CustomerCluster string `json:customercluster,omitempty`
-	Product         string `json:product,omitempty`
+	CustomerCluster string `json:"customercluster,omitempty"`
+	Product         string `json:"product,omitempty"`
 }
 
+// GetFibonacci returns the nth number on the fibonacci sequence
 func GetFibonacci(w http.ResponseWriter, r *http.Request) {
 	n := uint(10000)
 
@@ -34,6 +37,7 @@ func GetFibonacci(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(n2)
 }
 
+// CreateHash reads the json input and hashes it using HMAC SHA-256
 func CreateHash(w http.ResponseWriter, r *http.Request) {
 	bodyData, err := ioutil.ReadAll(r.Body)
 
